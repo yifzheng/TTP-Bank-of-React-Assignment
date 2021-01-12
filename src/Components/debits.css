@@ -1,0 +1,16 @@
+#debit-card {
+    display: grid;
+    margin-top: 2%;
+    margin-left: 7%;
+    width : 450px;
+    height : 350 px;
+    border: 4px solid rgb(66, 30, 19);
+    text-align: left;
+    font-size: 1.3em;
+    float: left;
+    align-items: stretch;
+} 
+#debit-card h3{
+    margin: 0;
+    padding: 20px;
+}
