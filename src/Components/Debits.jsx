@@ -11,6 +11,7 @@ class Debits extends Component {
         this.state = {
             display: false,
             addDebit: false,
+            debitAmount: this.props.amount,
             debit: this.props.debits
         }
         this.formDescription = React.createRef();
@@ -19,47 +20,63 @@ class Debits extends Component {
     }
 
     handleSubmit = () => {
+        Number(this.formAmount.current.value);
+        let num = parseFloat(this.formAmount.current.value)
         let obj = {
-            id : this.formDescription.current.value + this.formAmount.current.value + this.formDate.current.value,
-            description : this.formDescription.current.value,
-            amount: this.formAmount.current.value,
-            date : this.formDate.current.value
+            id: this.formDescription.current.value + this.formAmount.current.value + this.formDate.current.value + Math.random() * 100,
+            description: this.formDescription.current.value,
+            amount: num,
+            date: this.formDate.current.value
         }
-        console.log(obj);
         let arr = this.props.debits;
         arr.push(obj);
         this.setState({
-            debit : arr
+            debitAmount : this.state.debitAmount + num,
+            debit: arr
         })
-        {console.log(arr)}
     }
+
+    
+    viewBalance = () => {
+        this.setState({
+            display : !this.state.display,
+        })
+    }
+
+    handleCancel = () => {
+        this.setState({
+            addDebit: false
+        })
+    }
+
     render() {
         return (
             <div id="debits-page">
                 <Link to="/">Home Page</Link>
 
                 <h1>Debits Page</h1>
-                <button onClick={e => this.setState({ display: !this.state.display })}>View Balance</button>
+                <button onClick={this.viewBalance}>View Balance</button>
                 <button onClick={e => this.setState({ addDebit: !this.state.addDebit })}>Add Debit</button>
-                {this.state.display && <AccountBalance accountBalance={"124412"} />}
+                {this.state.display && <AccountBalance accountBalance={this.state.debitAmount} />}
                 {this.state.addDebit &&
                     <div id="debit-form">
                         <form>
                             <label id="debit-desription">
                                 Description:
-                        <input type="text" name="formDescription" placeholder={"Starbucks"} ref = {this.formDescription} />
+                        <input type="text" name="formDescription" placeholder={"Starbucks"} ref={this.formDescription} />
                             </label>
                             <label id="debit-desription">
                                 Amount:
-                        <input type="text" name="formAmount" placeholder={"100.15"} ref = {this.formAmount} />
+                        <input type="number" name="formAmount" placeholder={100.15} ref={this.formAmount} />
                             </label>
                             <label id="debit-desription">
                                 Date:
-                        <input type="text" name="formDate" placeholder={"2021-01-12"} ref = {this.formDate} />
+                        <input type="text" name="formDate" placeholder={"2021-01-12"} ref={this.formDate} />
                             </label>
 
                         </form>
-                        <button onClick = {this.handleSubmit}>Submit</button>
+                        <button onClick={this.handleSubmit}>Submit</button>
+                        <button onClick={this.handleCancel}>Cancel</button>
                     </div>
                 }
 
@@ -70,6 +87,7 @@ class Debits extends Component {
                         )
                     })
                 }
+                
             </div>
 
         );

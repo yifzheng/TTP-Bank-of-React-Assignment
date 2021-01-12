@@ -7,13 +7,14 @@ class AccountBalance extends Component {
         super(props);
 
         this.state = {
-            debits : []
+            balance : this.props.accountBalance
         }
     }
     render() {
+        let num = parseFloat(this.state.balance);
         return (
             <div>
-                <h3>Balance : {this.props.accountBalance}</h3>
+                <h3>Balance : {num}</h3>
             </div>
         )
     }

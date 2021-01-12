@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Home from "./Components/Home";
 import UserProfile from "./Components/UserProfile";
 import LogIn from "./Components/Login";
-import Debits from "./Components/Debits"
+import Debits from "./Components/Debits";
 import "./App.css";
 
 class App extends Component {
@@ -18,7 +18,8 @@ class App extends Component {
         userName: "John_Doe",
         memberSince: "08/23/99",
       },
-      debit : []
+      debit: [],
+      debitAmount: 0,
     };
   }
 
@@ -36,13 +37,16 @@ class App extends Component {
       this.setState({
         debit: data,
       });
-    }
-    catch(error){
+      this.state.debit.map((item) => {
+        this.setState({
+          debitAmount: this.state.debitAmount + item.amount,
+        });
+      });
+    } catch (error) {
       console.error(error);
     }
   }
   render() {
-
     return (
       <Router>
         <Switch>
@@ -62,8 +66,8 @@ class App extends Component {
               {...this.props}
             />
           </Route>
-          <Route exact path = "/debits">
-            <Debits debits = {this.state.debit}/>
+          <Route exact path="/debits">
+            <Debits debits={this.state.debit} amount={this.state.debitAmount} />
           </Route>
         </Switch>
       </Router>
