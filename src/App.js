@@ -6,6 +6,7 @@ import Home from "./Components/Home";
 import UserProfile from "./Components/UserProfile";
 import LogIn from "./Components/Login";
 import "./App.css";
+import Credit from './Components/Credits'
 
 class App extends Component {
   constructor() {
@@ -17,6 +18,8 @@ class App extends Component {
         userName: "John_Doe",
         memberSince: "08/23/99",
       },
+
+      credit : []
     };
   }
 
@@ -26,7 +29,23 @@ class App extends Component {
     this.setState({ currentUser: newUser });
   };
 
+  async componentDidMount() {
+    try {
+      let  datafromApi ="https://moj-api.herokuapp.com/credits";
+      let  result = await fetch(datafromApi);
+      const jsondata = await result.json();
+      this.setState({
+        credit: jsondata
+      });
+    }
+    catch(error){
+      console.error(error);
+    }
+  }
+
   render() {
+    const CreditComponent = () =>(<Credit bankinfo={this.state.credit} />);
+    // date={this.state.currentUser.memberSince}  userID={this.state.currentUser.userName} balance={this.state.accountBalance}
     return (
       <Router>
         <div id="App"></div>
@@ -48,6 +67,7 @@ class App extends Component {
               {...this.props}
             />
           </Route>
+          <Route path="/Credits" render={CreditComponent} />
         </Switch>
       </Router>
     );
