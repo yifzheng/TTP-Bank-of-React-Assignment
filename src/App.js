@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Home from "./Components/Home";
 import UserProfile from "./Components/UserProfile";
 import LogIn from "./Components/Login";
+import Debits from "./Components/Debits";
 import "./App.css";
 
 class App extends Component {
@@ -17,6 +18,8 @@ class App extends Component {
         userName: "John_Doe",
         memberSince: "08/23/99",
       },
+      debit: [],
+      debitAmount: 0,
     };
   }
 
@@ -26,11 +29,26 @@ class App extends Component {
     this.setState({ currentUser: newUser });
   };
 
+  async componentDidMount() {
+    try {
+      let url = "https://moj-api.herokuapp.com/debits";
+      let response = await fetch(url);
+      const data = await response.json();
+      this.setState({
+        debit: data,
+      });
+      this.state.debit.map((item) => {
+        this.setState({
+          debitAmount: this.state.debitAmount + item.amount,
+        });
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  }
   render() {
     return (
       <Router>
-        <div id="App"></div>
-
         <Switch>
           <Route exact path="/">
             <Home accountBalance={this.state.accountBalance} />
@@ -47,6 +65,9 @@ class App extends Component {
               mockLogIn={this.mockLogIn}
               {...this.props}
             />
+          </Route>
+          <Route exact path="/debits">
+            <Debits debits={this.state.debit} amount={this.state.debitAmount} />
           </Route>
         </Switch>
       </Router>
