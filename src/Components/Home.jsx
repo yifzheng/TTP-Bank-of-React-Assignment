@@ -10,6 +10,7 @@ class Home extends Component {
             <div>
                 <Link to="/userProfile">User Profile</Link>
                 <Link to='/login'>LogIn</Link>
+                <Link to = "/debits">Debits Page</Link>
 
                 <img src="https://img.etimg.com/thumb/msid-71487585,width-300,imgsize-169788,,resizemode-4,quality-100/bank-getty.jpg" alt="bank" />
                 <h1>Bank of React</h1>

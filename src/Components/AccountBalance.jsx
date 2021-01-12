@@ -3,6 +3,13 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 class AccountBalance extends Component {
 
+    constructor(props){
+        super(props);
+
+        this.state = {
+            debits : []
+        }
+    }
     render() {
         return (
             <div>
