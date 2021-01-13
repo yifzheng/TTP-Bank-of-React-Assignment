@@ -19,7 +19,9 @@ class App extends Component {
         memberSince: "08/23/99",
       },
       debit: [],
+      credit: [],
       debitAmount: 0,
+      creditAmount: 0
     };
   }
 
