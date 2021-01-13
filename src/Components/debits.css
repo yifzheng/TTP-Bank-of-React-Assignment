@@ -50,12 +50,12 @@
     margin-left: 25%;
     font-size: 1.5em;
     padding: 10px;
-    margin-top : 5%;
+    margin-top : 1%;
 }
 #debit-form form input{
     height: 20px;
 }
 #debit-form .submit-btn{
-    margin-left: 25%;
-    margin-top: 10%;
+    margin-left: 35%;
+    margin-top: 1%;
 }
