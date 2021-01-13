@@ -34,10 +34,14 @@ class App extends Component {
   async componentDidMount() {
     try {
       let url = "https://moj-api.herokuapp.com/debits";
+      let url2 = "https://moj-api.herokuapp.com/credits";
       let response = await fetch(url);
+      let response2 = await fetch(url);
       const data = await response.json();
+      const creditData = await response2.json()
       this.setState({
         debit: data,
+        credit: creditData
       });
       this.state.debit.map((item) => {
         this.setState({
