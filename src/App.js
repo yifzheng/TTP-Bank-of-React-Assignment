@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import axios from 'axios'
 
 //components
 import Home from "./Components/Home";
@@ -7,6 +8,7 @@ import UserProfile from "./Components/UserProfile";
 import LogIn from "./Components/Login";
 import "./App.css";
 import Credit from './Components/Credits'
+
 
 class App extends Component {
   constructor() {
@@ -19,7 +21,8 @@ class App extends Component {
         memberSince: "08/23/99",
       },
 
-      credit : []
+      credit : [],
+      CreditAmount: 0
     };
   }
 
@@ -30,22 +33,25 @@ class App extends Component {
   };
 
   async componentDidMount() {
-    try {
-      let  datafromApi ="https://moj-api.herokuapp.com/credits";
-      let  result = await fetch(datafromApi);
-      const jsondata = await result.json();
-      this.setState({
-        credit: jsondata
-      });
-    }
-    catch(error){
-      console.error(error);
-    }
+    axios.get(`https://moj-api.herokuapp.com/credits`)
+      .then(res => {
+        const credit = res.data;
+        this.setState({ 
+            credit : credit,
+        });
+        this.state.credit.map((elem) =>{
+          this.setState({
+            CreditAmount: this.state.CreditAmount + elem.amount
+          })
+        })
+      }).catch(console.error())
   }
 
+
+
   render() {
-    const CreditComponent = () =>(<Credit bankinfo={this.state.credit} />);
-    // date={this.state.currentUser.memberSince}  userID={this.state.currentUser.userName} balance={this.state.accountBalance}
+    const CreditComponent = () =>(<Credit credits={this.state.credit} creditAmount={this.state.CreditAmount} balance={this.state.accountBalance}/>);
+     
     return (
       <Router>
         <div id="App"></div>
