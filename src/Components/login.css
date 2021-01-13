@@ -1,0 +1,30 @@
+#form {
+  width: 30vw;
+  height: 20vh;
+  border: 2px solid rgb(107, 136, 165);
+  margin-left: 35%;
+  margin-top: 15%;
+  border-radius: 20px;
+  padding: 20px;
+}
+#form label {
+  font-size: 2em;
+  padding: 20px;
+}
+#form input {
+  width: 18vw;
+  height: 4vh;
+  margin-left: 1%;
+}
+#form button {
+  text-decoration: none;
+  margin-left: 35%;
+  margin-top: 3%;   
+  height: 40px;
+  width: 10vw;
+  border: 2px solid rgb(107, 136, 165);
+  background-color: rgb(182, 197, 212);
+  font-size: 1.5em;
+  color: azure;
+  border-radius: 10px;
+}

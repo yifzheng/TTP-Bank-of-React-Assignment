@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
+import "./balance.css";
+
 class AccountBalance extends Component {
 
     constructor(props){
@@ -13,9 +15,7 @@ class AccountBalance extends Component {
     render() {
         let num = parseFloat(this.state.balance);
         return (
-            <div>
-                <h3>Balance : {num}</h3>
-            </div>
+            <h3 className = "balance">Balance : {num}</h3>
         )
     }
 }
