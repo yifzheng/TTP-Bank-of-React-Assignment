@@ -30,8 +30,9 @@ class Debits extends Component {
         }
         let arr = this.props.debits;
         arr.push(obj);
+        const total = parseFloat(this.state.debitAmount + num);
         this.setState({
-            debitAmount: this.state.debitAmount + num,
+            debitAmount: total,
             debit: arr
         })
     }
@@ -40,7 +41,9 @@ class Debits extends Component {
     viewBalance = () => {
         this.setState({
             display: !this.state.display,
+            addDebit : false
         })
+        this.props.parentCallBack("100000");
     }
 
     handleCancel = () => {
@@ -56,7 +59,7 @@ class Debits extends Component {
                 <div className="btn">
                     <button className="return-home" ><Link to="/" style={{ textDecoration: 'none' }}>Home Page</Link></button>
                     <button className="balanceBtn" onClick={this.viewBalance}>View Balance</button>
-                    <button className="addBtn" onClick={e => this.setState({ addDebit: !this.state.addDebit })}>Add Debit</button>
+                    <button className="addBtn" onClick={e => this.setState({ addDebit: !this.state.addDebit, display : false })}>Add Debit</button>
                     {this.state.display && <AccountBalance accountBalance={this.state.debitAmount} />}
                     {this.state.addDebit &&
                         <div id="debit-form">

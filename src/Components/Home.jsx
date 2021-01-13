@@ -13,13 +13,14 @@ class Home extends Component {
                     <button><Link to="/userProfile" style={{ textDecoration: 'none' }}>User Profile</Link></button>
                     <button><Link to='/login' style={{ textDecoration: 'none' }}>LogIn</Link></button>
                     <button><Link to="/debits" style={{ textDecoration: 'none' }}>Debits Page</Link></button>
+                    <button><Link to='/Credits' style={{ textDecoration: 'none' }}>Credits Page</Link></button>
                 </div>
 
                 <div id="home-page">
                     <img className = "bank-pic" src="https://img.etimg.com/thumb/msid-71487585,width-300,imgsize-169788,,resizemode-4,quality-100/bank-getty.jpg" alt="bank" />
                     <h1>Bank of React</h1>
                 </div>
-
+                <AccountBalance accountBalance={this.props.accountBalance} />
             </div>
         )
     }
