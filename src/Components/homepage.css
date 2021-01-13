@@ -1,0 +1,31 @@
+#nav-bar {
+  margin: 0;
+  padding: 10px;
+  background-color: rgb(182, 197, 212);
+  text-decoration: none;
+  border: 2px solid rgb(107, 136, 165);
+}
+#nav-bar button {
+  text-decoration: none;
+  margin-left: 0.7%;
+  height: 40px;
+  width: 24vw;
+  border: 2px solid rgb(107, 136, 165);
+  background-color: rgb(182, 197, 212);
+  font-size: 1.5em;
+  color: azure;
+  border-radius: 10px;
+}
+#home-page img {
+  width: 50vw;
+  height: 45vh;
+  margin-left: 24.1%;
+  margin-top: 5%;
+}
+#home-page h1 {
+  font-size: 4em;
+  text-align: center;
+}
+.btn {
+  margin: 1%;
+}

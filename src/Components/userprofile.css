@@ -1,0 +1,36 @@
+.back-home {
+    text-decoration: none;
+    height: 40px;
+    width: 10vw;
+    border: 2px solid rgb(107, 136, 165);
+    background-color: rgb(182, 197, 212);
+    font-size: 1.5em;
+    color: azure;
+    border-radius: 10px;
+}
+.user-profile{
+    text-align: center;
+    font-size: 3em;
+}
+.profile-pic {
+    text-align: center;
+    width: 15vw;
+    height: 30vh;
+    border:  2px solid rgb(107, 136, 165);
+    border-radius: 200px;
+    margin-left: 20%;
+}
+.username, .member {
+    text-align: center;
+    font-size: 2em;
+    margin-top: 1%;
+    padding: 10px;
+}
+#profile{
+    border:  2px solid rgb(107, 136, 165);
+    border-radius: 10px;
+    width: 25vw;
+    margin-left: 36%;
+    padding: 20px;
+    margin-top: 4%;
+}
