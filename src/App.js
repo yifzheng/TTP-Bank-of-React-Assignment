@@ -7,6 +7,7 @@ import UserProfile from "./Components/UserProfile";
 import LogIn from "./Components/Login";
 import Debits from "./Components/Debits";
 import "./App.css";
+import Credit from "./Components/Credits";
 
 class App extends Component {
   constructor() {
@@ -19,12 +20,17 @@ class App extends Component {
         memberSince: "08/23/99",
       },
       debit: [],
-      credit: [],
       debitAmount: 0,
-      creditAmount: 0
+      credit: [],
+      CreditAmount: 0
     };
   }
 
+  setDebitBalance = data => {
+    this.setState({
+      accountBalance : data
+    })   
+  }
   mockLogIn = (logInInfo) => {
     const newUser = { ...this.state.currentUser };
     newUser.userName = logInInfo.userName;
@@ -34,26 +40,44 @@ class App extends Component {
   async componentDidMount() {
     try {
       let url = "https://moj-api.herokuapp.com/debits";
+      let url2 = "https://moj-api.herokuapp.com/credits";
       let response = await fetch(url);
+      let response2 = await fetch(url2);
       const data = await response.json();
+      const data2 = await response2.json();
       this.setState({
         debit: data,
+        credit: data,
       });
       this.state.debit.map((item) => {
         this.setState({
           debitAmount: this.state.debitAmount + item.amount,
         });
       });
+      this.state.credit.map((elem) =>{
+          this.setState({
+            CreditAmount: this.state.CreditAmount + elem.amount
+          })
+      })
     } catch (error) {
       console.error(error);
     }
   }
+
   render() {
+    const CreditComponent = () => (
+      <Credit
+        credits={this.state.credit}
+        creditAmount={this.state.CreditAmount}
+        balance={this.state.accountBalance}
+      />
+    );
+    let difference = parseInt(this.state.CreditAmount - this.state.debitAmount);
     return (
       <Router>
         <Switch>
           <Route exact path="/">
-            <Home accountBalance={this.state.accountBalance} />
+            <Home accountBalance={difference} />
           </Route>
           <Route exact path="/userProfile">
             <UserProfile
@@ -69,8 +93,9 @@ class App extends Component {
             />
           </Route>
           <Route exact path="/debits">
-            <Debits debits={this.state.debit} amount={this.state.debitAmount} />
+            <Debits debits={this.state.debit} amount={this.state.debitAmount} parentCallBack={this.setDebitBalance}/>
           </Route>
+          <Route path="/Credits" render={CreditComponent} />
         </Switch>
       </Router>
     );
