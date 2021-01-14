@@ -16,7 +16,7 @@ class App extends Component {
     super();
 
     this.state = {
-      //accountBalance: 14568.27,
+      accountBalance: 14568.27,
       currentUser: {
         userName: "John_Doe",
         memberSince: "08/23/99",
@@ -24,14 +24,13 @@ class App extends Component {
       debit: [],
       debitAmount: 0,
       credit: [],
-      CreditAmount: 0,
-      totalAmount: 0
+      CreditAmount: 0
     };
   }
 
   debitCallBack = (data) => {
-    const sum = parseFloat(this.state.totalAmount - data);
-    this.setState({totalAmount : sum}, () => console.log(this.state.totalAmount))
+    const sum = parseFloat(this.state.accountBalance - data);
+    this.setState({accountBalance : sum}, () => console.log(this.state.accountBalance))
     this.setState({
       debitAmount : this.state.debitAmount + data,
     })   
@@ -39,11 +38,11 @@ class App extends Component {
   }
   
   creditCallBack = data => {
-    const sum = parseFloat(this.state.totalAmount + data);
+    const sum = parseFloat(this.state.accountBalance + data);
     this.setState({
       CreditAmount : this.state.CreditAmount + data.value
     })
-    this.setState({totalAmount : sum}, () => console.log(this.state.totalAmount))
+    this.setState({accountBalance : sum}, () => console.log(this.state.accountBalance))
   }
 
   mockLogIn = (logInInfo) => {
@@ -98,7 +97,7 @@ class App extends Component {
       <Router basename={process.env.PUBLIC_URL + '/'}>
         <Switch>
           <Route exact path="/">
-            <Home accountBalance={this.state.totalAmount}/>
+            <Home accountBalance={this.state.accountBalance}/>
           </Route>
           <Route exact path="/userProfile">
             <UserProfile
@@ -114,7 +113,7 @@ class App extends Component {
             />
           </Route>
           <Route exact path="/debits">
-            <Debits debits={this.state.debit} amount={this.state.debitAmount} debitCallBack={this.debitCallBack} totalAmount={this.state.totalAmount}/>
+            <Debits debits={this.state.debit} amount={this.state.debitAmount} debitCallBack={this.debitCallBack} totalAmount={this.state.accountBalance}/>
           </Route>
           <Route path="/Credits" render={CreditComponent} />
         </Switch>

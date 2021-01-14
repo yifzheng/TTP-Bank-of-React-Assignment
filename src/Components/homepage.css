@@ -7,7 +7,7 @@
 }
 #nav-bar button {
   text-decoration: none;
-  margin-left: 0.7%;
+  margin-left: .82vw;
   height: 40px;
   width: 23.5vw;
   border: 2px solid rgb(107, 136, 165);
@@ -19,7 +19,7 @@
 #home-page img {
   width: 50vw;
   height: 45vh;
-  margin-left: 24.1%;
+  margin-left: 25vw;
   margin-top: 5%;
 }
 #home-page h1 {

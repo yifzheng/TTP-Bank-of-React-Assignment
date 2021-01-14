@@ -44,7 +44,7 @@ h1{
 }
 .form label {
     font-size: 2em;
-    margin: 20px;
+    margin: 40px;
 }
 .form input{
     width: 20vw;
@@ -76,6 +76,9 @@ h1{
     padding-top: 7vh;
     border-radius: 0.5em;
     text-align: center;
+}
+.account-balance{
+    margin-top: 25px;
 }
 #display{
     background-color:azure;

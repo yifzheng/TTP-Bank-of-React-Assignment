@@ -67,7 +67,6 @@ class Debits extends Component {
     }
 
     render() {
-        let balance = parseFloat(this.state.totalBalance);
         let displayDebit = <div id="debit-cards">
             {
                 this.state.debit.map((item) => {
@@ -91,7 +90,7 @@ class Debits extends Component {
                     <button className="return-home" style={{ textDecoration: 'none' }} onClick={e => this.setState({ displayDebit: !this.state.displayDebit })}>Display Debit</button>
                     <button className="balanceBtn" onClick={this.viewBalance}>View Balance</button>
                     <button className="addBtn" onClick={e => { this.setState({ addDebit: !this.state.addDebit, display: false }) }}>Add Debit</button>
-                    {this.state.display && (!this.state.totalBalance ? <h3>LOADING</h3> : <AccountBalance accountBalance={balance.toFixed(2)} />)}
+                    {this.state.display && (!this.state.totalBalance ? <h3>LOADING</h3> : <AccountBalance accountBalance={this.props.totalAmount.toFixed(2)} />)}
                     {this.state.addDebit &&
                         (<div id="debit-form">
                             <form>
