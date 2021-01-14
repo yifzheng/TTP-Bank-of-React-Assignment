@@ -107,7 +107,7 @@ class Credit extends Component {
 
 
   render() {
-    let balance = <div id="balance"><h3 className = "account-balance">Account Balance: $ {this.state.totalBalance.toFixed(2)}</h3></div>
+    let balance = <div id="balance"><h3 className = "account-balance">Account Balance: $ {this.state.balance.toFixed(2)}</h3></div>
     let displaycredit = <div >
       {
         this.state.credits.map((item) => <DisplayCredit key={item.id} description={item.description}
