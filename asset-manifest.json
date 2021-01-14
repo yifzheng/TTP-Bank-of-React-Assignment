@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/TTP-Bank-of-React-Assignment/static/css/main.c776c21f.chunk.css",
-    "main.js": "/TTP-Bank-of-React-Assignment/static/js/main.201815d6.chunk.js",
-    "main.js.map": "/TTP-Bank-of-React-Assignment/static/js/main.201815d6.chunk.js.map",
+    "main.css": "/TTP-Bank-of-React-Assignment/static/css/main.da9de552.chunk.css",
+    "main.js": "/TTP-Bank-of-React-Assignment/static/js/main.ba622555.chunk.js",
+    "main.js.map": "/TTP-Bank-of-React-Assignment/static/js/main.ba622555.chunk.js.map",
     "runtime-main.js": "/TTP-Bank-of-React-Assignment/static/js/runtime-main.edde3654.js",
     "runtime-main.js.map": "/TTP-Bank-of-React-Assignment/static/js/runtime-main.edde3654.js.map",
     "static/js/2.399909fb.chunk.js": "/TTP-Bank-of-React-Assignment/static/js/2.399909fb.chunk.js",
@@ -10,13 +10,13 @@
     "static/js/3.8ec068ba.chunk.js": "/TTP-Bank-of-React-Assignment/static/js/3.8ec068ba.chunk.js",
     "static/js/3.8ec068ba.chunk.js.map": "/TTP-Bank-of-React-Assignment/static/js/3.8ec068ba.chunk.js.map",
     "index.html": "/TTP-Bank-of-React-Assignment/index.html",
-    "static/css/main.c776c21f.chunk.css.map": "/TTP-Bank-of-React-Assignment/static/css/main.c776c21f.chunk.css.map",
+    "static/css/main.da9de552.chunk.css.map": "/TTP-Bank-of-React-Assignment/static/css/main.da9de552.chunk.css.map",
     "static/js/2.399909fb.chunk.js.LICENSE.txt": "/TTP-Bank-of-React-Assignment/static/js/2.399909fb.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.edde3654.js",
     "static/js/2.399909fb.chunk.js",
-    "static/css/main.c776c21f.chunk.css",
-    "static/js/main.201815d6.chunk.js"
+    "static/css/main.da9de552.chunk.css",
+    "static/js/main.ba622555.chunk.js"
   ]
 }
