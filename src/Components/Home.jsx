@@ -19,7 +19,7 @@ class Home extends Component {
                 <div id="home-page">
                     <img className="bank-pic" src="https://img.etimg.com/thumb/msid-71487585,width-300,imgsize-169788,,resizemode-4,quality-100/bank-getty.jpg" alt="bank" />
                     <h1>Welcome to Bank of React</h1><br/>
-                    <h2 className="home-balance">Account Balance: {this.props.accountBalance.toFixed(2)}</h2>
+                    <h2 className="home-balance">Account Balance: ${this.props.accountBalance.toFixed(2)}</h2>
                 </div>
 
             </div>

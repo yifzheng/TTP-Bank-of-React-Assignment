@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { HashRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 //components
 import Home from "./Components/Home";
@@ -95,7 +95,7 @@ class App extends Component {
     );
     
     return (
-      <Router>
+      <Router basename={process.env.PUBLIC_URL + '/'}>
         <Switch>
           <Route exact path="/">
             <Home accountBalance={this.state.totalAmount}/>
