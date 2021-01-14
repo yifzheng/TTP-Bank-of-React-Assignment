@@ -76,22 +76,20 @@ class Debits extends Component {
                 })
             }
         </div>
-        let canSubmit = false;
-        if ((this.formAmount.current && this.formDate.current && this.formDescription.current) === null) {
-            canSubmit = false;
-        }
-        else {
-            canSubmit = true;
-        }
         return (
             <div id="debits-page">
-                <div className="btn">
+                {!this.state.addDebit && !this.state.display && <div className="btn">
                     <Link to="/" style={{ textDecoration: 'none' }}><button className="return-home" >Home Page</button></Link>
                     <button className="return-home" style={{ textDecoration: 'none' }} onClick={e => this.setState({ displayDebit: !this.state.displayDebit })}>Display Debit</button>
                     <button className="balanceBtn" onClick={this.viewBalance}>View Balance</button>
                     <button className="addBtn" onClick={e => { this.setState({ addDebit: !this.state.addDebit, display: false }) }}>Add Debit</button>
-                    {this.state.display && (!this.state.totalBalance ? <h3>LOADING</h3> : <AccountBalance accountBalance={this.props.totalAmount.toFixed(2)} />)}
-                    {this.state.addDebit &&
+                </div>}
+                {this.state.display &&
+                    <div id = "display-balance">
+                        <h1>Account Balance: ${this.props.totalAmount.toFixed(2)}</h1>
+                        <button className="return-debit" onClick={() => this.setState({display : false})}>Back</button>
+                    </div>}
+                {this.state.addDebit &&
                         (<div id="debit-form">
                             <form>
                                 <label id="debit-desription">
@@ -112,14 +110,11 @@ class Debits extends Component {
                             <button className="cancel-btn" onClick={this.handleCancel}>Cancel</button>
                         </div>)
                     }
-                </div>
                 <br></br>
                 <h1>{this.props.message}</h1>
                 <br></br>
                 <br></br>
                 {this.state.displayDebit && displayDebit}
-
-
             </div>
 
         );
