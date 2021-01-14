@@ -1,3 +1,14 @@
+#login-page{
+  background-color: rgb(182, 197, 212);
+  height: 100vh;
+}
+#login-page button{
+  border: 2px solid rgb(107, 136, 165);
+  background-color: azure;
+  font-size: 1.5em;
+  color: rgb(182, 197, 212);
+  border-radius: 10px;
+}
 #form {
   width: 30vw;
   height: 20vh;
@@ -12,19 +23,18 @@
   padding: 20px;
 }
 #form input {
-  width: 18vw;
+  width: 13vw;
   height: 4vh;
   margin-left: 1%;
 }
 #form button {
   text-decoration: none;
-  margin-left: 35%;
   margin-top: 3%;   
   height: 40px;
   width: 10vw;
   border: 2px solid rgb(107, 136, 165);
-  background-color: rgb(182, 197, 212);
+  background-color: azure;
   font-size: 1.5em;
-  color: azure;
+  color: rgb(182, 197, 212);
   border-radius: 10px;
 }
