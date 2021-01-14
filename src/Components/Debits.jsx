@@ -10,13 +10,26 @@ class Debits extends Component {
 
         this.state = {
             display: false,
+            displayDebit: false,
             addDebit: false,
+            totalBalance : this.props.totalAmount,
+            creditAmount: this.props.creditAmount,
             debitAmount: this.props.amount,
             debit: this.props.debits
         }
         this.formDescription = React.createRef();
         this.formAmount = React.createRef();
         this.formDate = React.createRef();
+    }
+
+    
+    setBalance = () =>{
+        const num = this.props.creditAmount;
+        return(
+            this.setState({
+                totalBalance : parseFloat(num - this.state.debitAmount)
+            })
+        )
     }
 
     handleSubmit = () => {
@@ -35,6 +48,9 @@ class Debits extends Component {
             debitAmount: total,
             debit: arr
         })
+        console.log(this.state.debitAmount);
+        console.log(num);
+        this.props.debitCallBack(num);
     }
 
 
@@ -43,7 +59,6 @@ class Debits extends Component {
             display: !this.state.display,
             addDebit : false
         })
-        this.props.parentCallBack("100000");
     }
 
     handleCancel = () => {
@@ -53,14 +68,16 @@ class Debits extends Component {
     }
 
     render() {
+        let balance = parseFloat(this.state.totalBalance);
         return (
             <div id="debits-page">
 
                 <div className="btn">
                     <button className="return-home" ><Link to="/" style={{ textDecoration: 'none' }}>Home Page</Link></button>
+                    <button className="return-home" style={{ textDecoration: 'none' }} onClick = {e => this.setState({displayDebit: !this.state.displayDebit})}>Display Debit</button>
                     <button className="balanceBtn" onClick={this.viewBalance}>View Balance</button>
                     <button className="addBtn" onClick={e => this.setState({ addDebit: !this.state.addDebit, display : false })}>Add Debit</button>
-                    {this.state.display && <AccountBalance accountBalance={this.state.debitAmount} />}
+                    {this.state.display && (!this.state.totalBalance? <h3>LOADING</h3> : <AccountBalance accountBalance={balance} />)}
                     {this.state.addDebit &&
                         <div id="debit-form">
                             <form>
@@ -84,10 +101,10 @@ class Debits extends Component {
                     }
                 </div>
                 <br></br>
-                <h1>Debits Page</h1>
+                <h1>{this.props.message}</h1>
                 <br></br>
                 <br></br>
-                <div id="debit-cards">
+                {this.state.displayDebit && <div id="debit-cards">
                     {
                         this.state.debit.map((item) => {
                             return (
@@ -95,7 +112,7 @@ class Debits extends Component {
                             )
                         })
                     }
-                </div>
+                </div>}
 
 
             </div>
