@@ -46,10 +46,9 @@ class Debits extends Component {
         const total = parseFloat(this.state.debitAmount + num);
         this.setState({
             debitAmount: total,
-            debit: arr
+            debit: arr,
+            addDebit: false
         })
-        console.log(this.state.debitAmount);
-        console.log(num);
         this.props.debitCallBack(num);
     }
 
@@ -78,16 +77,23 @@ class Debits extends Component {
                 })
             }
         </div>
+        let canSubmit = false;
+        if ((this.formAmount.current && this.formDate.current && this.formDescription.current) === null) {
+            canSubmit = false;
+        }
+        else {
+            canSubmit = true;
+        }
         return (
             <div id="debits-page">
                 <div className="btn">
                     <Link to="/" style={{ textDecoration: 'none' }}><button className="return-home" >Home Page</button></Link>
                     <button className="return-home" style={{ textDecoration: 'none' }} onClick={e => this.setState({ displayDebit: !this.state.displayDebit })}>Display Debit</button>
                     <button className="balanceBtn" onClick={this.viewBalance}>View Balance</button>
-                    <button className="addBtn" onClick={e => this.setState({ addDebit: !this.state.addDebit, display: false })}>Add Debit</button>
+                    <button className="addBtn" onClick={e => { this.setState({ addDebit: !this.state.addDebit, display: false }) }}>Add Debit</button>
                     {this.state.display && (!this.state.totalBalance ? <h3>LOADING</h3> : <AccountBalance accountBalance={balance.toFixed(2)} />)}
                     {this.state.addDebit &&
-                        <div id="debit-form">
+                        (<div id="debit-form">
                             <form>
                                 <label id="debit-desription">
                                     Description:
@@ -105,7 +111,7 @@ class Debits extends Component {
                             </form>
                             <button className="submit-btn" onClick={this.handleSubmit}>Submit</button>
                             <button className="cancel-btn" onClick={this.handleCancel}>Cancel</button>
-                        </div>
+                        </div>)
                     }
                 </div>
                 <br></br>
