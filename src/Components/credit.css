@@ -2,3 +2,82 @@
     margin: 20px;
     display: block;
 }
+h1{
+    text-align: center;
+}
+.homepagecontener{
+    display: flex;
+    background-color:darkcyan;
+    min-height: 820px;
+    margin:5px;
+}
+
+.homefirstdiv{
+    flex: 1;
+}
+
+.homeseconddiv{
+    flex: 1;
+}
+#logo{
+    height: 520px;
+}
+.identification{
+    text-align: right;
+    padding: 15px 15px 0 15px;
+}
+.displaybalance{
+    margin-top: 340px;
+    text-align: center;
+    border-color: rgba(0, 0, 0, 0.329);
+    border-radius: 0.8em;
+}
+.form{
+
+    background-color:aquamarine;
+    
+    height: 150px;
+    min-width: 350px;
+    margin-left: 500px;
+    margin-top: 300px;
+    border-radius: 0.5em;
+
+}
+
+#userpageSeconddiv{
+    background-color: antiquewhite;
+    height: 400px;
+    width: 600px;
+    margin-top: 160px;
+}
+
+
+#creditpage{
+    flex: 1;
+}
+#balance{
+    background-color:aquamarine;
+    
+    height: 150px;
+    width: 450px;
+    margin-left: 420px;
+    margin-top: 100px;
+    padding-top: 10px;
+    border-radius: 0.5em;
+}
+#display{
+    background-color:azure;
+    height: 150px;
+    width: 450px;
+    margin: 10px;
+    padding: 2px;
+    border-radius: 0.5em;
+    flex: 1;
+}
+#displaycontener{
+    display:flex;
+}
+button{
+    height: 30px;
+    margin: 4px;
+}

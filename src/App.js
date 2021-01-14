@@ -8,6 +8,7 @@ import UserProfile from "./Components/UserProfile";
 import LogIn from "./Components/Login";
 import "./App.css";
 import Credit from './Components/Credits'
+import "./Components/credit.css"
 
 
 class App extends Component {
