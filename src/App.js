@@ -14,7 +14,7 @@ class App extends Component {
     super();
 
     this.state = {
-      accountBalance: 14568.27,
+      //accountBalance: 14568.27,
       currentUser: {
         userName: "John_Doe",
         memberSince: "08/23/99",
@@ -22,14 +22,24 @@ class App extends Component {
       debit: [],
       debitAmount: 0,
       credit: [],
-      CreditAmount: 0
+      CreditAmount: 0,
+      totalAmount: 0
     };
   }
 
-  setDebitBalance = data => {
+  debitCallBack = (data) => {
+    const sum = parseFloat(this.state.totalAmount - data);
     this.setState({
-      accountBalance : data
+      debitAmount : this.state.debitAmount + data,
     })   
+    this.setState({totalAmount : sum}, () => console.log(this.state.totalAmount))
+    console.log("it is working " + this.state.totalAmount); 
+  }
+  creditCallBack = data => {
+    this.setState({
+      CreditAmount : this.state.CreditAmount + data.value,
+      totalAmount: this.state.totalAmount + data.value
+    })
   }
   mockLogIn = (logInInfo) => {
     const newUser = { ...this.state.currentUser };
@@ -47,18 +57,22 @@ class App extends Component {
       const data2 = await response2.json();
       this.setState({
         debit: data,
-        credit: data,
+        credit: data2,
       });
       this.state.debit.map((item) => {
         this.setState({
           debitAmount: this.state.debitAmount + item.amount,
+          totalAmount : this.state.totalAmount - item.amount
         });
       });
       this.state.credit.map((elem) =>{
           this.setState({
-            CreditAmount: this.state.CreditAmount + elem.amount
+            CreditAmount: this.state.CreditAmount + elem.amount,
+            totalAmount: this.state.totalAmount + elem.amount
           })
       })
+      parseFloat(this.state.CreditAmount);
+      parseFloat(this.state.debitAmount);
     } catch (error) {
       console.error(error);
     }
@@ -72,12 +86,12 @@ class App extends Component {
         balance={this.state.accountBalance}
       />
     );
-    let difference = parseInt(this.state.CreditAmount - this.state.debitAmount);
+    
     return (
       <Router>
         <Switch>
           <Route exact path="/">
-            <Home accountBalance={difference} />
+            <Home accountBalance={this.state.totalAmount}/>
           </Route>
           <Route exact path="/userProfile">
             <UserProfile
@@ -93,7 +107,7 @@ class App extends Component {
             />
           </Route>
           <Route exact path="/debits">
-            <Debits debits={this.state.debit} amount={this.state.debitAmount} parentCallBack={this.setDebitBalance}/>
+            <Debits debits={this.state.debit} amount={this.state.debitAmount} debitCallBack={this.debitCallBack} totalAmount={this.state.totalAmount}/>
           </Route>
           <Route path="/Credits" render={CreditComponent} />
         </Switch>

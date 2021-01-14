@@ -102,7 +102,7 @@ class Credit extends Component {
     let displaycredit;
     let balance
     if (this.state.balanceisCheck) {
-      balance = <p>Total Balance: {this.state.balance}</p>;
+      balance = <p>Total Balance: {this.state.Amount}</p>;
     }
     if (this.state.isDisplay) {
       displaycredit =
