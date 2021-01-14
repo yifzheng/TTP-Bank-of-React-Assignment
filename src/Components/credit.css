@@ -2,3 +2,114 @@
     margin: 20px;
     display: block;
 }
+h1{
+    text-align: center;
+}
+.homepagecontener{
+    display: flex;
+    background-color:darkcyan;
+    min-height: 100vh;
+    height: 100%;
+    margin:0;
+}
+
+.homefirstdiv{
+    flex: 1;
+}
+
+.homeseconddiv{
+    flex: 1;
+}
+#logo{
+    height: 520px;
+}
+.identification{
+    text-align: right;
+    padding: 15px 15px 0 15px;
+}
+.displaybalance{
+    margin-top: 340px;
+    text-align: center;
+    border-color: rgba(0, 0, 0, 0.329);
+    border-radius: 0.8em;
+}
+.form{
+    background-color:aquamarine;
+    height: 20vh;
+    min-width: 35vw;
+    margin-left: 32.5vw;
+    margin-top: 30vh;
+    border-radius: 0.5em;
+
+}
+.form label {
+    font-size: 2em;
+    margin: 20px;
+}
+.form input{
+    width: 20vw;
+    height: 30px;
+    padding-left: 20px;
+    font-size: .8em;
+}
+.form button{
+    margin-top: 2vh;
+    margin-left: 4vw;
+}
+#userpageSeconddiv{
+    background-color: antiquewhite;
+    height: 400px;
+    width: 600px;
+    margin-top: 160px;
+}
+
+#creditpage{
+    flex: 1;
+}
+#balance{
+    background-color:aquamarine;
+    height: 20vh;
+    width: 40vw;
+    font-size: 1.8em;
+    margin-left: 30vw;
+    margin-top: 100px;
+    padding-top: 7vh;
+    border-radius: 0.5em;
+    text-align: center;
+}
+#display{
+    background-color:azure;
+    height: 15vh;
+    width: 30vw;
+    margin: 10px;
+    padding: 5vh;
+    font-size: 1.8em;
+    border-radius: 0.5em;
+    border: 5px solid rgb(107, 136, 165);
+    background-color: aquamarine;
+    flex: 1;
+}
+#displaycontener{
+    display:flex;
+}
+.home-Btn{
+    text-decoration: none;
+    height: 40px;
+    width: 10vw;
+    border: 2px solid rgb(107, 136, 165);
+    background-color: rgb(182, 197, 212);
+    font-size: 1.5em;
+    color: azure;
+    border-radius: 10px;
+}
+button{
+    text-decoration: none;
+    height: 40px;
+    width: 10vw;
+    border: 2px solid rgb(107, 136, 165);
+    background-color: rgb(182, 197, 212);
+    font-size: 1.1em;
+    color: azure;
+    border-radius: 10px;
+    margin: 4px;
+}

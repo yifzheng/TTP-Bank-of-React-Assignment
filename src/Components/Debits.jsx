@@ -12,7 +12,7 @@ class Debits extends Component {
             display: false,
             displayDebit: false,
             addDebit: false,
-            totalBalance : this.props.totalAmount,
+            totalBalance: this.props.totalAmount,
             creditAmount: this.props.creditAmount,
             debitAmount: this.props.amount,
             debit: this.props.debits
@@ -22,12 +22,12 @@ class Debits extends Component {
         this.formDate = React.createRef();
     }
 
-    
-    setBalance = () =>{
+
+    setBalance = () => {
         const num = this.props.creditAmount;
-        return(
+        return (
             this.setState({
-                totalBalance : parseFloat(num - this.state.debitAmount)
+                totalBalance: parseFloat(num - this.state.debitAmount)
             })
         )
     }
@@ -57,7 +57,7 @@ class Debits extends Component {
     viewBalance = () => {
         this.setState({
             display: !this.state.display,
-            addDebit : false
+            addDebit: false
         })
     }
 
@@ -69,15 +69,23 @@ class Debits extends Component {
 
     render() {
         let balance = parseFloat(this.state.totalBalance);
+        let displayDebit = <div id="debit-cards">
+            {
+                this.state.debit.map((item) => {
+                    return (
+                        <DisplayDebit key={item.id} description={item.description} amount={item.amount} date={item.date} />
+                    )
+                })
+            }
+        </div>
         return (
             <div id="debits-page">
-
                 <div className="btn">
-                    <button className="return-home" ><Link to="/" style={{ textDecoration: 'none' }}>Home Page</Link></button>
-                    <button className="return-home" style={{ textDecoration: 'none' }} onClick = {e => this.setState({displayDebit: !this.state.displayDebit})}>Display Debit</button>
+                    <Link to="/" style={{ textDecoration: 'none' }}><button className="return-home" >Home Page</button></Link>
+                    <button className="return-home" style={{ textDecoration: 'none' }} onClick={e => this.setState({ displayDebit: !this.state.displayDebit })}>Display Debit</button>
                     <button className="balanceBtn" onClick={this.viewBalance}>View Balance</button>
-                    <button className="addBtn" onClick={e => this.setState({ addDebit: !this.state.addDebit, display : false })}>Add Debit</button>
-                    {this.state.display && (!this.state.totalBalance? <h3>LOADING</h3> : <AccountBalance accountBalance={balance} />)}
+                    <button className="addBtn" onClick={e => this.setState({ addDebit: !this.state.addDebit, display: false })}>Add Debit</button>
+                    {this.state.display && (!this.state.totalBalance ? <h3>LOADING</h3> : <AccountBalance accountBalance={balance.toFixed(2)} />)}
                     {this.state.addDebit &&
                         <div id="debit-form">
                             <form>
@@ -95,8 +103,8 @@ class Debits extends Component {
                                 </label>
 
                             </form>
-                            <button className = "submit-btn"onClick={this.handleSubmit}>Submit</button>
-                            <button className = "cancel-btn" onClick={this.handleCancel}>Cancel</button>
+                            <button className="submit-btn" onClick={this.handleSubmit}>Submit</button>
+                            <button className="cancel-btn" onClick={this.handleCancel}>Cancel</button>
                         </div>
                     }
                 </div>
@@ -104,15 +112,7 @@ class Debits extends Component {
                 <h1>{this.props.message}</h1>
                 <br></br>
                 <br></br>
-                {this.state.displayDebit && <div id="debit-cards">
-                    {
-                        this.state.debit.map((item) => {
-                            return (
-                                <DisplayDebit key={item.id} description={item.description} amount={item.amount} date={item.date} />
-                            )
-                        })
-                    }
-                </div>}
+                {this.state.displayDebit && displayDebit}
 
 
             </div>

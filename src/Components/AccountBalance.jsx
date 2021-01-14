@@ -15,7 +15,7 @@ class AccountBalance extends Component {
     render() {
         let num = parseFloat(this.state.balance);
         return (
-            <h3 className = "balance">Balance : {num}</h3>
+            <h3 className = "balance">Account Balance : ${num}</h3>
         )
     }
 }

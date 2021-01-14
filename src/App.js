@@ -7,7 +7,9 @@ import UserProfile from "./Components/UserProfile";
 import LogIn from "./Components/Login";
 import Debits from "./Components/Debits";
 import "./App.css";
-import Credit from "./Components/Credits";
+import Credit from './Components/Credits'
+import "./Components/credit.css"
+
 
 class App extends Component {
   constructor() {
@@ -29,18 +31,21 @@ class App extends Component {
 
   debitCallBack = (data) => {
     const sum = parseFloat(this.state.totalAmount - data);
+    this.setState({totalAmount : sum}, () => console.log(this.state.totalAmount))
     this.setState({
       debitAmount : this.state.debitAmount + data,
     })   
-    this.setState({totalAmount : sum}, () => console.log(this.state.totalAmount))
     console.log("it is working " + this.state.totalAmount); 
   }
+  
   creditCallBack = data => {
+    const sum = parseFloat(this.state.totalAmount + data);
     this.setState({
-      CreditAmount : this.state.CreditAmount + data.value,
-      totalAmount: this.state.totalAmount + data.value
+      CreditAmount : this.state.CreditAmount + data.value
     })
+    this.setState({totalAmount : sum}, () => console.log(this.state.totalAmount))
   }
+
   mockLogIn = (logInInfo) => {
     const newUser = { ...this.state.currentUser };
     newUser.userName = logInInfo.userName;
@@ -84,6 +89,8 @@ class App extends Component {
         credits={this.state.credit}
         creditAmount={this.state.CreditAmount}
         balance={this.state.accountBalance}
+        creditCallBack={this.creditCallBack} 
+        totalAmount={this.state.totalAmount}
       />
     );
     
