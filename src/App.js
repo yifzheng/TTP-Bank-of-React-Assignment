@@ -66,13 +66,13 @@ class App extends Component {
       this.state.debit.map((item) => {
         this.setState({
           debitAmount: this.state.debitAmount + item.amount,
-          totalAmount : this.state.totalAmount - item.amount
+          accountBalance : this.state.accountBalance - item.amount
         });
       });
       this.state.credit.map((elem) =>{
           this.setState({
             CreditAmount: this.state.CreditAmount + elem.amount,
-            totalAmount: this.state.totalAmount + elem.amount
+            accountBalance: this.state.accountBalance + elem.amount
           })
       })
       parseFloat(this.state.CreditAmount);
