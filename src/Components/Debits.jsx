@@ -81,23 +81,18 @@ class Debits extends Component {
             }
         </div>
         return (
-            <div id="debits-page">
-                {// if addDebit and Display of balance is false, display the buttons}
-                {!this.state.addDebit && !this.state.display && <div className="btn">
-                        {//link/route to homepage}
+            <div id="debits-page">                
+                {!this.state.addDebit && !this.state.display && <div className="btn">                        
                     <Link to="/" style={{ textDecoration: 'none' }}><button className="return-home" >Home Page</button></Link>
-                            {// display the debit components}
                     <button className="return-home" style={{ textDecoration: 'none' }} onClick={e => this.setState({ displayDebit: !this.state.displayDebit })}>Display Debit</button>
                     <button className="balanceBtn" onClick={this.viewBalance}>View Balance</button>
                     <button className="addBtn" onClick={e => { this.setState({ addDebit: !this.state.addDebit, display: false }) }}>Add Debit</button>
-                </div>}
-                            {// if display is true, render the account balance}
+                </div>}      
                 {this.state.display &&
                     <div id = "display-balance">
                         <h1>Account Balance: ${this.props.totalAmount.toFixed(2)}</h1>
                         <button className="return-debit" onClick={() => this.setState({display : false})}>Back</button>
-                    </div>}
-                                {// if addDebit is true render the form to add debit component to debit state}
+                    </div>}      
                 {this.state.addDebit &&
                         (<div id="debit-form">
                             <form>
@@ -123,7 +118,6 @@ class Debits extends Component {
                 <h1>{this.props.message}</h1>
                 <br></br>
                 <br></br>
-                                    {// if displayDebit is true, render all debit components}
                 {this.state.displayDebit && displayDebit}
             </div>
 
