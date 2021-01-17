@@ -16,41 +16,46 @@ class App extends Component {
     super();
 
     this.state = {
-      accountBalance: 0,
+      accountBalance: 0, // formula = credit - debit
       currentUser: {
         userName: "John_Doe",
         memberSince: "08/23/99",
       },
-      debit: [],
-      debitAmount: 0,
-      credit: [],
-      CreditAmount: 0
+      debit: [], // to store data pulled from debit api
+      debitAmount: 0, // to store amount of $ extracted from debit api
+      credit: [], // to store data pulled from credit api
+      CreditAmount: 0 // to store amount of $ extracted from credit api
     };
   }
 
+  // callback function used to assign as a prop to retrieve the amount of money from debit component
   debitCallBack = (data) => {
     const sum = parseFloat(this.state.accountBalance - data);
+    // set the state of accountBalance = this.state.accountBalance - data because account balance is credit-debit
     this.setState({accountBalance : sum}, () => console.log(this.state.accountBalance))
+    // update debitamount state
     this.setState({
       debitAmount : this.state.debitAmount + data,
     })   
     console.log("it is working " + this.state.totalAmount); 
   }
-  
+  // callback function used to assign as a prop to retrieve the amount of money from credit component
   creditCallBack = data => {
     const sum = parseFloat(this.state.accountBalance + data);
+    // update creditAmount state
     this.setState({
       CreditAmount : this.state.CreditAmount + data.value
     })
+    // set the state of accountBalance = this.state.accountBalance + data because account balance is credit-debit
     this.setState({accountBalance : sum}, () => console.log(this.state.accountBalance))
   }
-
+  // mock login function. Information enetered in login component is used to set the state of current user
   mockLogIn = (logInInfo) => {
     const newUser = { ...this.state.currentUser };
     newUser.userName = logInInfo.userName;
     this.setState({ currentUser: newUser });
   };
-
+  // in componentDidMount(), we fetch data from api's asyncronously and update the states of credit and debit
   async componentDidMount() {
     try {
       let url = "https://moj-api.herokuapp.com/debits";
@@ -63,6 +68,7 @@ class App extends Component {
         debit: data,
         credit: data2,
       });
+      // map through the debit and credit states and update creditAmount and debitAmount
       this.state.debit.map((item) => {
         this.setState({
           debitAmount: this.state.debitAmount + item.amount,
@@ -81,7 +87,7 @@ class App extends Component {
       console.error(error);
     }
   }
-
+  // render() function
   render() {
     const CreditComponent = () => (
       <Credit
@@ -92,7 +98,7 @@ class App extends Component {
         totalAmount={this.state.totalAmount}
       />
     );
-    
+    // routes to other components
     return (
       <Router basename={process.env.PUBLIC_URL + '/'}>
         <Switch>
